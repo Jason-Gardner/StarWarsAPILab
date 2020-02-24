@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model Person
+
+@if (Model != null)
+{
+    <p>You have searched the following: @Model.name from the planet @Model.homeworld!</p>
+}
+
+<form asp-action="Search">
+    <input type="number" name="selection"/>
+    <button type="submit">Search</button>
+</form>
