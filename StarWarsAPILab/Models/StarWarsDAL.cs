@@ -25,15 +25,16 @@ namespace StarWarsAPILab.Models
         {
             var person = await GetData("https://swapi.co/api/people/" + i + "/");
             Person Jedi = new Person(person);
-            Jedi.homeworld = await GetPlanet(Jedi.homeworld);
+            Planet tempPlanet = await GetPlanet(Jedi.homeworld);
+            Jedi.homeworld = tempPlanet.name;
             return Jedi;
         }
 
-        public async Task<string> GetPlanet(string url)
+        public async Task<Planet> GetPlanet(string url)
         {
             var planet = await GetData(url);
             Planet homePlanet = JsonSerializer.Deserialize<Planet>(planet);
-            return homePlanet.name;
+            return homePlanet;
         }
     }
 }

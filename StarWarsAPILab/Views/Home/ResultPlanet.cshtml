@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model Planet
+
+<p>You have searched the following:</p> 
+<p>Welcome to the planet</p> <h4>@Model.name!</h4>
+
+<form asp-action="PersonSearch">
+    <input type="number" name="selection" />
+    <button type="submit">Search Person</button>
+</form>
+<form asp-action="PlanetSearch">
+    <input type="number" name="selection" />
+    <button type="submit">Search Planet</button>
+</form>
+

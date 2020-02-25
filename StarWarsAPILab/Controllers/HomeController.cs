@@ -23,16 +23,27 @@ namespace StarWarsAPILab.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Search(int selection)
+        public async Task<IActionResult> PersonSearch(int selection)
         {
             StarWarsDAL db = new StarWarsDAL();
 
             Person Jedi = await db.GetPerson(selection);
+            ViewBag.Type = "Person";
 
             return View("Index", Jedi);
         }
 
+        public async Task<IActionResult> PlanetSearch(int selection)
+        {
+            StarWarsDAL db = new StarWarsDAL();
 
+            Planet Home = new Planet();
+
+            Home = await db.GetPlanet("https://swapi.co/api/planets/" + Convert.ToString(selection) + "/");
+            ViewBag.Type = "Planet";
+
+            return View("ResultPlanet", Home);
+        }
 
         public IActionResult Privacy()
         {
